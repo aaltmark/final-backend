@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_28_203628) do
+ActiveRecord::Schema.define(version: 2020_08_31_231248) do
 
   create_table "instructor_resorts", force: :cascade do |t|
     t.integer "instructor_id", null: false
@@ -35,13 +35,17 @@ ActiveRecord::Schema.define(version: 2020_08_28_203628) do
     t.string "image"
     t.integer "years_experience"
     t.boolean "certification"
+    t.text "bio"
+    t.string "hometown"
   end
 
   create_table "lessons", force: :cascade do |t|
-    t.integer "request_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["request_id"], name: "index_lessons_on_request_id"
+    t.integer "user_id"
+    t.integer "instructor_id"
+    t.string "date"
+    t.integer "resort_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -85,13 +89,10 @@ ActiveRecord::Schema.define(version: 2020_08_28_203628) do
 
   create_table "schedules", force: :cascade do |t|
     t.integer "instructor_id", null: false
-    t.string "day_of_week"
-    t.boolean "early_am"
-    t.boolean "mid_am"
-    t.boolean "early_pm"
-    t.boolean "late_pm"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "date"
+    t.boolean "available"
     t.index ["instructor_id"], name: "index_schedules_on_instructor_id"
   end
 
@@ -122,7 +123,6 @@ ActiveRecord::Schema.define(version: 2020_08_28_203628) do
 
   add_foreign_key "instructor_resorts", "instructors"
   add_foreign_key "instructor_resorts", "resorts"
-  add_foreign_key "lessons", "requests"
   add_foreign_key "requests", "instructors"
   add_foreign_key "requests", "resorts"
   add_foreign_key "requests", "users"
