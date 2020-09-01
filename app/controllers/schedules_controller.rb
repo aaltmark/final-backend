@@ -1,6 +1,11 @@
 class SchedulesController < ApplicationController
     # skip_before_action :authorized, only: [:show, :update]
 
+    def index 
+        schedules = Schedule.all 
+        render json: schedules
+    end 
+
     def show 
         schedule = Schedule.find_by(id: params[:id])
         render json: schedule #, include: [:reviews]
