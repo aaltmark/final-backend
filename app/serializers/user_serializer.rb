@@ -1,7 +1,8 @@
 class UserSerializer < ActiveModel::Serializer
-    has_many :searches 
-    has_many :requests 
+    attributes :id, :name, :phone, :date_of_birth, :email
+    # has_many :searches 
+    # has_many :requests 
     has_many :lessons 
-    has_many :reviews 
+    # has_many :reviews 
 
 end 

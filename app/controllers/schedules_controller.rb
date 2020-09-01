@@ -1,4 +1,6 @@
 class SchedulesController < ApplicationController
+    # skip_before_action :authorized, only: [:show, :update]
+
     def show 
         schedule = Schedule.find_by(id: params[:id])
         render json: schedule #, include: [:reviews]
@@ -16,6 +18,6 @@ class SchedulesController < ApplicationController
 
     private
     def schedule_params
-        params.require(:schedule).permit(:instructor_id, :date, :available)
+        params.require(:schedule).permit(:id, :instructor_id, :date, :available)
     end
 end

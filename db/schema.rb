@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_231248) do
+ActiveRecord::Schema.define(version: 2020_09_01_211631) do
 
   create_table "instructor_resorts", force: :cascade do |t|
     t.integer "instructor_id", null: false
@@ -45,7 +45,11 @@ ActiveRecord::Schema.define(version: 2020_08_31_231248) do
     t.integer "user_id"
     t.integer "instructor_id"
     t.string "date"
-    t.integer "resort_id"
+    t.string "resort_name"
+    t.integer "group_size"
+    t.string "group_skill"
+    t.string "group_age"
+    t.integer "schedule_id"
   end
 
   create_table "requests", force: :cascade do |t|
